@@ -1,0 +1,28 @@
+Source: libproc-processtable-perl
+Maintainer: Debian Perl Group <pkg-perl-maintainers@lists.alioth.debian.org>
+Uploaders: gregor herrmann <gregoa@debian.org>,
+           Damyan Ivanov <dmn@debian.org>,
+           Ansgar Burchardt <ansgar@debian.org>,
+           Salvatore Bonaccorso <carnil@debian.org>
+Section: perl
+Testsuite: autopkgtest-pkg-perl
+Priority: optional
+Build-Depends: debhelper-compat (= 13),
+               perl-xs-dev,
+               perl:native
+Standards-Version: 4.6.0
+Vcs-Browser: https://salsa.debian.org/perl-team/modules/packages/libproc-processtable-perl
+Vcs-Git: https://salsa.debian.org/perl-team/modules/packages/libproc-processtable-perl.git
+Homepage: https://metacpan.org/release/Proc-ProcessTable
+Rules-Requires-Root: no
+
+Package: libproc-processtable-perl
+Architecture: any
+Depends: ${misc:Depends},
+         ${perl:Depends},
+         ${shlibs:Depends}
+Multi-Arch: same
+Description: Perl library for accessing process table information
+ Proc::ProcessTable attempts to unify the interfaces to Unix process table
+ information, without having to run a ps subprocess from within a perl or
+ shell script and parse the output.

@@ -1,0 +1,22 @@
+#!/usr/bin/make -f
+
+export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+
+include /usr/share/dpkg/architecture.mk
+
+PACKAGE = $(shell dh_listpackages)
+TMP     = $(CURDIR)/debian/$(PACKAGE)
+PERL   ?= /usr/bin/perl
+
+%:
+	dh $@
+
+override_dh_auto_configure:
+ifneq ($(filter $(DEB_HOST_ARCH_OS),kfreebsd hurd),)
+	$(PERL) hints/linux.pl
+endif
+	dh_auto_configure
+
+override_dh_installexamples:
+	dh_installexamples
+	sed -i '1s|^#!/usr/bin/env perl|#!/usr/bin/perl|' $(TMP)/usr/share/doc/$(PACKAGE)/examples/*
